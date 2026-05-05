@@ -6,6 +6,12 @@ The codebase implements mathematical models and validates theoretical coverage p
 1. *Modeling and Analysis of Cellular Networks Using Stochastic Geometry: A Tutorial* (ElSawy et al., 2017).
 2. *A Tractable Approach to Coverage and Rate in Cellular Networks* (Andrews, Baccelli, and Ganti, 2011).
 
+## Repository Structure
+
+Different folders contain different files based on the reference papers:
+* **baseline_simulation**: Contains the product and code for the first tutorial paper.
+* **polar_simulations**, **cartesian_simulations**, and the **plot_analytical** files: Contain the generated codes and analytical math for the second paper.
+
 ## Current State of the Simulations
 
 The repository has advanced past the baseline setup. The current codebase successfully models a complete interference-limited network and implements the following features:
