@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README.html</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+    body {
+      background-color: #0b162c;
+      background-image: radial-gradient(rgba(9, 132, 227, 0.15) 1px, transparent 1px);
+      background-size: 14px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0;
+      padding: 3rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+      color: #2c3e50;
+    }
+
+    .aero-window {
+      width: 100%;
+      max-width: 850px;
+      background: linear-gradient(180deg, #c7ced6 0%, #969fae 32px, #7c8592 100%);
+      border: 1px solid #1a1f26; 
+      border-radius: 12px;
+      box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.95), 
+        inset 1px 0 1px rgba(255, 255, 255, 0.3), 
+        inset -1px 0 1px rgba(255, 255, 255, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.5); 
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    
+    .title-bar {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      border-bottom: none;
+    }
+
+    .title-text {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #3b424d; 
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.5px;
+    }
+
+    
+    .controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .orb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      box-shadow: 
+        inset 0 1px 2px rgba(255, 255, 255, 0.9),
+        inset 0 -3px 4px rgba(0, 0, 0, 0.2),
+        0 1px 1px rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+    }
+
+    .orb.min { background: radial-gradient(circle at 50% 10%, #fff 0%, #f6d365 30%, #ffb347 100%); }
+    .orb.max { background: radial-gradient(circle at 50% 10%, #fff 0%, #a1c4fd 30%, #c2e9fb 100%); }
+    .orb.close { background: radial-gradient(circle at 50% 10%, #fff 0%, #ff758c 30%, #ff7eb3 100%); }
+
+    
+    .screen-container {
+      padding: 0 16px 16px 16px;
+      background: transparent;
+    }
+
+    .crt-screen {
+      background-color: #f8f9fa;
+      border: 1px solid #5a626c;
+      border-radius: 6px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 
+        inset 0 2px 8px rgba(0,0,0,0.06), 
+        0 1px 0 rgba(255,255,255,0.4); 
+    }
+
+    .crt-screen::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: repeating-linear-gradient(
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 3px,
+        rgba(0, 0, 0, 0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    h2, h3, h4 {
+      display: inline-block;
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      padding: 6px 14px;
+      border-radius: 6px;
+      color: #1a252f;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      background: linear-gradient(180deg, #f2f6f8 0%, #d8e1e7 49%, #b5c6d0 50%, #e0eff9 100%);
+      border: 1px solid #7a9ea9;
+      box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,1), 
+        inset 1px 0 0 rgba(255,255,255,0.5), 
+        inset -1px 0 0 rgba(255,255,255,0.5), 
+        0 3px 5px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2; 
+    }
+
+    h2 { font-size: 1.25rem; }
+    h3 { 
+      font-size: 1.1rem; 
+      background: linear-gradient(180deg, #ffffff 0%, #e6e6e6 49%, #cccccc 50%, #f2f2f2 100%);
+      border-color: #a0a0a0;
+    }
+    h4 { 
+      font-size: 0.95rem; 
+      background: linear-gradient(180deg, #fff3e0 0%, #ffe0b2 49%, #ffcc80 50%, #fff8e1 100%);
+      border-color: #d8a05b;
+    }
+
+    p, ul {
+      line-height: 1.6;
+      font-size: 0.95rem;
+      margin-bottom: 1.2em;
+      position: relative;
+      z-index: 2;
+    }
+
+    li { margin-bottom: 0.4em; }
+
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background-color: #eef2f5;
+      color: #c0392b; 
+      padding: 2px 6px;
+      border: 1px solid #d1d8dd;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+      font-weight: 700;
+    }
+
+
+    pre {
+      background-color: #ffffff;
+      border: 1px solid #aebac1;
+      border-radius: 6px;
+      padding: 1.2rem;
+      margin: 1.2em 0;
+      overflow-x: auto;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.08), 0 1px 0 rgba(255,255,255,1);
+      position: relative;
+      z-index: 2;
+    }
+
+    pre code {
+      background-color: transparent;
+      color: #0984e3; 
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      font-size: 0.9rem;
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #faf9f6;
+      border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cdd4d9;
+      border-radius: 8px;
+      border: 2px solid #faf9f6;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #aab3b8;
+    }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1.2em;
+      background-color: #0984e3;
+      vertical-align: bottom;
+      animation: blink 1s step-end infinite;
+      margin-left: 4px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="aero-window">
+    <div class="title-bar">
+      <div class="title-text">C:\WINDOWS\system32\cmd.exe</div>
+      <div class="controls">
+        <div class="orb min"></div>
+        <div class="orb max"></div>
+        <div class="orb close"></div>
+      </div>
+    </div>
+    
+    <div class="screen-container">
+      <div class="crt-screen">
+        
+        <h2>How to run this code</h2>
+        <p>First, download the project folder and extract the ZIP files to your desired directory.</p>
+        <p>Second, open a terminal and navigate to the project directory:</p>
+        
+        <pre><code>cd path/to/project</code></pre>
+        
+        <p>Then, activate the Virtual Environment:</p>
+        
+        <h3>macOS / Linux</h3>
+        <pre><code>source venv/bin/activate</code></pre>
+        
+        <h3>Windows</h3>
+        <p>If you are using <code>Windows Terminal</code>, the activation command depends on the shell you are running:</p>
+        
+        <h4>PowerShell</h4>
+        <pre><code>.\venv\Scripts\Activate.ps1</code></pre>
+        
+        <h4>Command Prompt (cmd)</h4>
+        <pre><code>venv\Scripts\activate.bat</code></pre>
+        
+        <h4>Git Bash</h4>
+        <pre><code>source venv/Scripts/activate</code></pre>
+        
+        <p>To verify if venv activated or not, you can check if the virtual environment name (e.g., <code>(venv)</code>) appears at the beginning of your terminal prompt.</p>
+        
+        <p>Install the following Python packages:</p>
+        <pre><code>pip install -r requirements.txt</code></pre>
+        
+        <p>Finally, execute the desired script. For example:</p>
+        <pre><code>python comparison_ipd.py</code></pre>
+        
+        <p>If your system requires <code>python3</code> instead of <code>python</code>, use:</p>
+        <pre><code>python3 comparison_ipd.py</code></pre>
+        
+        <h3>Troubleshooting</h3>
+        <ul>
+          <li>Ensure Python 3 is installed and available in your system PATH.</li>
+          <li>Verify that the virtual environment (<code>venv</code>) has been created before attempting to activate it.</li>
+          <li>If PowerShell blocks script execution, run:</li>
+        </ul>
+        
+        <pre><code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code></pre>
+        
+        <p>and then try activating the environment again.<span class="cursor"></span></p>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
