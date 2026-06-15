@@ -1,28 +1,71 @@
-# Cellular Networks Stochastic Geometry Simulations
+## How to run this code
 
-This repository contains Python simulations modeling large-scale cellular networks using stochastic geometry. 
+First, download the project folder and extract the ZIP files to your desired directory.
 
-The codebase implements mathematical models and validates theoretical coverage probabilities presented in two foundational papers:
-1. *Modeling and Analysis of Cellular Networks Using Stochastic Geometry: A Tutorial* (ElSawy et al., 2017).
-2. *A Tractable Approach to Coverage and Rate in Cellular Networks* (Andrews, Baccelli, and Ganti, 2011).
+Second, open a terminal and navigate to the project directory:
 
-## Repository Structure
+```bash
+cd path/to/project
+```
 
-Different folders contain different files based on the reference papers:
-* **baseline_simulation**: Contains the product and code for the first tutorial paper.
-* **polar_simulations**, **cartesian_simulations**, and the **plot_analytical** files: Contain the generated codes and analytical math for the second paper.
+Then, activate the Virtual Environment:
 
-## Current State of the Simulations
+### macOS / Linux
 
-The repository has advanced past the baseline setup. The current codebase successfully models a complete interference-limited network and implements the following features:
+```bash
+source venv/bin/activate
+```
 
-* **Poisson Point Process Rendering (PPP):** Models the spatial distribution of Base Stations (BS) using a Homogeneous Poisson Point Process (PPP) and maps the interference exclusion region using nearest-BS association.
-* **Network Interference & Fading:** Calculates the exact Signal-to-Interference Noise Ratio (SINR) for a test user by simulating Rayleigh fading (exponential distribution) and utilizing a path-loss exponent of α = 4. The network is assumed to be interference-limited, meaning thermal noise is ignored.
-* **Monte Carlo Validation:** Runs 10,000 randomized network snapshots to generate a Probability of Coverage curve (CCDF).
-* **Theoretical Formula Comparison:** Directly compares the simulated 10,000-run network data against the closed-form mathematical model for coverage probability (Equation 14) derived by Andrews et al.
+### Windows
 
-## How to Run
-1. Clone the repository in your local hard drive: `git clone https://github.com/madhurshrmaa/cellular-simulations.git`
-2. Activate the virtual environment. `source venv/bin/activate`
-3. Install dependencies: `pip install -r requirements.txt`
-4. Run the required scripts. e.g.: `python3 compare_results.py`
+If you are using **Windows Terminal**, the activation command depends on the shell you are running:
+
+**PowerShell**
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+**Command Prompt (cmd)**
+
+```cmd
+venv\Scripts\activate.bat
+```
+
+**Git Bash**
+
+```bash
+source venv/Scripts/activate
+```
+
+To verify if venv activated or not, you can check if the virtual environment name (e.g., `(venv)`) appears at the beginning of your terminal prompt.
+
+Install the following Python packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+Finally, execute the desired script. For example:
+
+```bash
+python comparison_ipd.py
+```
+
+If your system requires `python3` instead of `python`, use:
+
+```bash
+python3 comparison_ipd.py
+```
+
+#### Troubleshooting
+
+* Ensure Python 3 is installed and available in your system PATH.
+* Verify that the virtual environment (`venv`) has been created before attempting to activate it.
+* If PowerShell blocks script execution, run:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+and then try activating the environment again.
